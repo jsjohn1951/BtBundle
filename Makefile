@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/24 17:24:39 by wismith           #+#    #+#              #
-#    Updated: 2023/07/24 18:57:07 by wismith          ###   ########.fr        #
+#    Updated: 2023/07/24 19:42:21 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = ./docker-compose.yml
 COMP = docker-compose
 DIRFLAG =  -f $(SRCS)
 
-LOGS = ./logs
+LOGS = ./log
 SERVERLOG = server/server/server.log
 BOTLOG = bot/bot/bot.log
 
@@ -34,10 +34,10 @@ down : docDown mvServer cpBot
 
 docDown :
 	$(COMP) $(DIRFLAG) down --rmi all
-	
+
 mvServer : $(SERVERLOG)
 	mkdir -p $(LOGS)
-	mv $(SERVERLOG) $(LOGS)
+	rm -rf $(SERVERLOG)
 
 cpBot : $(BOTLOG)
 	mkdir -p $(LOGS)

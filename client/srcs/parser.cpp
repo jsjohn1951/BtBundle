@@ -43,7 +43,6 @@ void							parser::printCmds(std::vector<std::string> vec)
 		std::cout << vec[3].substr(1, vec[3].length() - 1);
 		for (size_t i = 4; i != vec.size(); i++)
 			std::cout << " " << vec[i];
-		// std::cout << "\r\n" << std::endl;
 		std::cout << std::endl;
 	}
 }

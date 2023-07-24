@@ -2,13 +2,10 @@
 
 printf "Running client locally? "
 tput setaf 1
-printf "y/n "
+printf "(y/n) "
 tput init
-printf ": "
 read lclient
-
 printf "\n"
-x=1
 
 if [ "${lclient}" = "y" ];
 then
@@ -20,25 +17,29 @@ then
 
 	printf "This may take a while.\n"
 	printf "Waiting for server "
-	while [ $x = 1 ];
+	while true;
 	do
-	if [ -f server/server/server.log ];
-	then
-		clear
-		tput setaf 2
-		printf "Server found!\n"
-		tput init
-		./client/client 127.0.0.1 6667 wismith bob
-		make fclean
-		exit 0
-	else
-		tput setaf 2
-		printf " . "
-		tput init
-		sleep 1
-	fi
-done
-
+		if [ -f server/server/server.log ];
+		then
+			tput setaf 2
+			printf " done! "
+			tput init
+			sleep 1
+			clear
+			tput setaf 2
+			printf "Server found!\n"
+			tput init
+			./client/client 127.0.0.1 6667 wismith bob
+			make fclean
+			make fclean -C client
+			exit 0
+		else
+			tput setaf 2
+			printf " . "
+			tput init
+			sleep 1
+		fi
+	done
 else
 	clear
 	printf "Nothing to see here folks!\n\n"

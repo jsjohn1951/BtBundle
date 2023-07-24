@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:16 by wismith           #+#    #+#             */
-/*   Updated: 2023/07/21 19:20:08 by wismith          ###   ########.fr       */
+/*   Updated: 2023/07/24 22:38:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ bot::bot () : log("bot.log"), fd(0), pfd(), buffer(), pars(), msgs(), backlog(),
 	this->funcs["prar"] = &bot::prar;
 	this->funcs["finish"] = &bot::finish;
 	this->funcs["back"] = &bot::back;
-
-	this->log << " *******************************************************************";
-	this->log << " *          __                                                     *";
-	this->log << " *      _  |@@|             ░█▀▄░▀█▀░░░░░▀█▀░█▀▄░█▀▀░█▀▄░█▀█░▀█▀   *";
-	this->log << " *     / \\ \\--/ __          ░█▀▄░░█░░░░░░░█░░█▀▄░█░░░█▀▄░█░█░░█░   *";
-	this->log << " *     ) O|----|  |   __    ░▀▀░░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀░░▀▀▀░░▀░   *";
-	this->log << " *    / / \\ }{ /\\ )_ / _\\                                          *";
-	this->log << " *    )/  /\\__/\\ \\__O (__     42-Abu Dhabi exam Break Time Bot     *";
-	this->log << " *   |/  (--/\\--)    \\__/                                          *";
-	this->log << " *   /   _)(  )(_                        Constructing...           *";
-	this->log << "*      `---''---`                                                 *";
-	this->log << "*******************************************************************";
 }
 
 bot::~bot() {
@@ -115,11 +103,12 @@ void	bot::run ()
 	{
 		poll(&this->pfd, 1, -1);
 
+
 		if (this->pfd.revents & POLLOUT)
 		{
 			MAPPY::iterator	it;
 			for ( it = this->channels.begin();
-					it != this->channels.end(); it++)
+				it != this->channels.end(); it++)
 			{
 				std::vector<std::string>	&bckl = it->second->retrieveBacklog();
 				if (!bckl.size())
@@ -135,8 +124,11 @@ void	bot::run ()
 		{
 			pars.pRecv( Read(this->fd) );
 			for (size_t j = 0; j < pars.getCmds().size(); j++)
-				if (pars.getCmdSec(j)[0].size())
-					this->selCmd(pars.getCmdSec(j));
+			{
+				std::vector<std::string> vec = pars.getCmdSec(j);
+				if (vec[0].size())
+					this->selCmd(vec);
+			}
 		}
 		pars.clear();
 	}
@@ -170,14 +162,14 @@ void		bot::selCmd(std::vector<std::string> cmd)
 			this->list(cmd[2]);
 		else if (this->toLower(cmd[4]) == "num")
 			this->num(cmd[2]);
-		else if (cmd.size() >= 5)
+		else if (cmd.size() >= 6)
 		{
 			this->backlog.push_back("");
-
 			if (this->toLower(cmd[4]) == "add" && cmd.size() == 7)
 				this->add(cmd[5], cmd[6], cmd[2]);
 			else
-				(this->*funcs[this->toLower(cmd[4])]) (cmd[5], cmd[2]);
+				if (this->funcs.find(this->toLower(cmd[4])) != this->funcs.end())
+					(this->*funcs[this->toLower(cmd[4])]) (cmd[5], cmd[2]);
 			this->backlog.push_back("");
 		}
 	}

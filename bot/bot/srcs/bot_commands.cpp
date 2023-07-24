@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:31:18 by wismith           #+#    #+#             */
-/*   Updated: 2023/07/21 19:47:27 by wismith          ###   ########.fr       */
+/*   Updated: 2023/07/24 21:01:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,8 @@ void	bot::bth(std::string &subUser, const std::string &chan)
 		return this->channels[chan]->addPrivMsg("TOO MANY IN BATHROOM!");
 	if (!sub->bth)
 		return this->channels[chan]->addPrivMsg(subUser + " HAS NO MORE BATHROOM BREAKS LEFT!");
-
 	if (sub->status == BTH_BREAK)
-		return ;
+		return this->channels[chan]->addPrivMsg(subUser + " needs to come back first!");
 	this->channels[chan]->addPrivMsg(subUser + " status set : [ WENT BATHROOM ]");
 	sub->bth--;
 	sub->status = BTH_BREAK;
@@ -120,7 +119,7 @@ void	bot::prar(std::string &subUser, const std::string &chan)
 		return this->channels[chan]->addPrivMsg(subUser + " HAS NO MORE PRAYER BREAKS LEFT!");
 	}
 	if (sub->status == PRAR_BREAK)
-		return ;
+		return this->channels[chan]->addPrivMsg(subUser + " needs to come back first!");
 	this->channels[chan]->addPrivMsg(subUser + " status set : [ WENT PRAYER BREAK ]");
 	sub->prar--;
 	sub->status = PRAR_BREAK;
@@ -169,7 +168,7 @@ void	bot::back(std::string &subUser, const std::string &chan)
 		return this->channels[chan]->addPrivMsg(subUser + " ALREADY FINISHED!");
 	}
 	if (sub->status == SEATED)
-		return ;
+		return this->channels[chan]->addPrivMsg(subUser + " hasn't left yet!");
 	this->channels[chan]->addPrivMsg(subUser + " status set : [ SEATED ]");
 	sub->status = SEATED;
 	(sub->gender == MALE ? track.mBth : track.fBth )--;

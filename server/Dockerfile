@@ -9,6 +9,7 @@ RUN apt-get update -y --no-install-recommends
 RUN apt-get install \
 	make \
 	g++ \
+	valgrind \
 	dialog \
 	-y --no-install-recommends
 
