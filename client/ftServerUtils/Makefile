@@ -27,28 +27,12 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCS)))
 
 $(OBJDIR)/%.o : srcs/%.cpp
 	@mkdir -p $(OBJDIR)
-	@printf "\033[A\033[2K\r"
-
-	@tput setaf 2
-	@printf "\tGenerating ... "
-	@tput init
-
 	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 all : $(NAME)
 
-$(NAME) : printHead $(OBJ)
-	@printf "\033[A\033[2K\r"
-	@tput setaf 2
-	@printf "\tGenerating ... "
-	@tput init
+$(NAME) : $(OBJ)
 	ar -rc $(NAME) $(OBJ)
-
-	@printf "\033[A\033[2K\r"
-
-	@tput setaf 2
-	@printf "\tArchived ServerUtils.a\n"
-	@tput init
 
 clean :
 	@rm -rf $(OBJDIR)
@@ -58,38 +42,4 @@ fclean : clean
 
 re : fclean all
 
-printHead :
-	@printf " _______________________________________________________\n"
-	@printf "|                                                       |\n"
-	@printf "|";
-
-	@tput setaf 2
-	@printf "     \"THE MOMENT WE STOP LEARNING IS THE MOMENT WE     "
-	@tput init
-
-	@printf "|\n"
-	@printf "|";
-
-	@tput setaf 2
-	@printf "    STAGNATE, AND THOUGH LEARNING IN THE REAL WORLD    "
-	@tput init
-
-	@printf "|\n"
-	@printf "|"
-
-	@tput setaf 2
-	@printf "     IS SELDOM UNACCOMPANIED BY HARDSHIP IT'S ALSO     "
-	@tput init
-
-	@printf "|\n"
-	@printf "|"
-
-	@tput setaf 2
-	@printf "          AN EXPERIENCE.\" - Willem J. Smith            "
-	@tput init
-
-	@printf "|\n"
-	@printf "|_______________________________________________________|\n"
-	@printf "\n\n"
-
-.PHONY : all clean fclean re printHead
+.PHONY : all clean fclean re

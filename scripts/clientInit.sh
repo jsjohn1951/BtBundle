@@ -1,5 +1,6 @@
 #! /bin/bash
 
+clear
 printf "Running client locally? "
 tput setaf 1
 printf "(y/n) "
@@ -10,7 +11,6 @@ printf "\n"
 if [ "${lclient}" = "y" ];
 then
 	make re -C ./client
-	clear
 	tput setaf 2
 	printf "Attempting to init client...\n"
 	tput init
