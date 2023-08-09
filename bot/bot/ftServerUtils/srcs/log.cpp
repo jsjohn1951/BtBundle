@@ -58,15 +58,13 @@ void	ft::log::pushLog(const std::string &msg)
 	std::string time( asctime( gmtm ) );
 	time.erase(time.find('\n'));
 
-	std::string	lnStr;
+	// std::string	lnStr;
 	std::ofstream	outfile(this->Name.c_str());
 	this->lastLog = msg;
 	this->parsLog(msg);
 
 	while (this->nextLog.size())
 	{
-		this->lineNum++;
-		this->Content += (lnStr << this->lineNum) + " : ";
 		this->Content += this->nextLog.front();
 		this->Content += "\ttime < " + time + " > ";
 		this->Content += "\n";

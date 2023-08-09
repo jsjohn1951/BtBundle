@@ -16,7 +16,7 @@ class client
 	private :
 		int				fd;
 		struct pollfd	pfd;
-		input			input;
+		Input			input;
 		std::string		user;
 		std::string		buffer;
 		ft::parser		pars;

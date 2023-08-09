@@ -5,15 +5,15 @@
 #include <unistd.h>
 #include <iostream>
 
-class input
+class Input
 {
 	private :
 		std::string			str;
 		int					fd;
 
 	public :
-							input ();
-							~input ();
+							Input ();
+							~Input ();
 
 		//* getters
 		const std::string	&getStr() const;

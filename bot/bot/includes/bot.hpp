@@ -42,6 +42,7 @@
 # define BTH_BREAK 1
 # define PRAR_BREAK 2
 # define FINISHED 3
+# define EMG_BREAK 4
 
 # define MALE 0
 # define FEMALE 1
@@ -49,6 +50,9 @@
 #define BREAKS 1
 #define NAMES 2
 #define LIMITS 3
+
+#define M_ON true
+#define M_OFF false
 
 # define MAPPY std::map<std::string, ft::channel *>
 
@@ -91,6 +95,7 @@ namespace ft
 			std::map<std::string, ft::channel *>	channels;
 			t_track 								track;
 			std::map<std::string, void (bot::*)(std::string &, const std::string &)>	funcs;
+			bool									m_mode;
 
 
 			int										bthBreaks;
@@ -104,10 +109,12 @@ namespace ft
 			void									status(std::string &subUser, const std::string &chan);
 			void									bth(std::string &subUser, const std::string &chan);
 			void									prar(std::string &subUser, const std::string &chan);
+			void									emg(std::string &subUser, const std::string &chan);
 			void									finish(std::string &subUser, const std::string &chan);
 			void									back(std::string &subUser, const std::string &chan);
+			void									monitoring_mode( std::string &chan, const std::string &op );
 
-			void									list( const std::string &chan);
+			// void									list( const std::string &chan);
 			void									num( const std::string &chan );
 
 			void									numMsg( const std::string &chan, const std::string &MNum, const std::string &FNum);

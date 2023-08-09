@@ -58,7 +58,6 @@ BTH    <username> - sets the status to bathroom break
 PRAR   <username> - sets the status to prayer break
 BACK   <username> - sets the status to seated
 FINISH <username> - sets the status to finished exam
-LIST              - lists all usernames on the system
 HELP              - sends a list of available commands
 ```
 ###### Stop the bot by entering either ``` ctrl - c ``` or ``` ctrl - \ ```.

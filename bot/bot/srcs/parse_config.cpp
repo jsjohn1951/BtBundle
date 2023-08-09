@@ -52,7 +52,7 @@ void	bot::bot_NAMES(const std::string &str)
 			= new t_subj(this->bthBreaks, this->prarBreaks, MALE);
 	else if (vec.size() > 1)
 		this->subj[vec[0]]
-			= new t_subj(this->bthBreaks, this->prarBreaks, (vec[1] == "M" ? MALE : FEMALE));
+			= new t_subj(this->bthBreaks, this->prarBreaks, (this->toLower(vec[1]) == "f" ? FEMALE : MALE));
 }
 
 void	bot::retrieveConfig()

@@ -10,7 +10,7 @@ printf "\n"
 
 if [ "${lclient}" = "y" ];
 then
-	make re -C ./client
+	make re -s -C ./client
 	tput setaf 2
 	printf "Attempting to init client...\n"
 	tput init
@@ -30,8 +30,8 @@ then
 			printf "Server found!\n"
 			tput init
 			./client/client 127.0.0.1 6667 wismith bob
-			make fclean
-			make fclean -C client
+			make fclean -s
+			make fclean -s -C client
 			exit 0
 		else
 			tput setaf 2
@@ -47,7 +47,7 @@ else
 	printf "For Remote Client :\n"
 	printf "\tUse host's IPv4 -> \""
 	tput setaf 2
-	ipconfig getifaddr en0 | tr -d '\n'
+	ifconfig | grep "inet " | tail -1 | awk '{print $2}' | tr -d '\n'
 	tput init
 	printf "\"\n\tUse host's Port -> \""
 	tput setaf 1

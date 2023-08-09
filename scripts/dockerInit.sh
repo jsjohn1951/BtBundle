@@ -44,7 +44,7 @@ if [ "$dInstall" = "y" ];
 			tput setaf 1
 			echo "docker not running"
 			tput init
-			open -a Docker
+			systemctl start docker
 			printf "Starting docker "
 			while [ "$( docker ps 2> /dev/null | wc -l | tr -d ' ' )" = "0" ]
 			do
@@ -55,7 +55,7 @@ if [ "$dInstall" = "y" ];
 			done
 		fi
 		printf "docker started!\n"
-		docker-compose -f ./docker-compose.yml up -d --build
+		docker compose -f ./docker-compose.yml up -d --build
 		./scripts/clientInit.sh
 else
 	tput setaf 1

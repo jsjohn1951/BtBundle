@@ -25,14 +25,16 @@ s_track_num::~s_track_num () {}
 bool		g_bot_run = true;
 
 bot::bot () : log("bot.log"), fd(0), pfd(), buffer(), pars(), msgs(), backlog(),
-	chan(), track (), funcs (), subj ()
+	chan(), track (), funcs (), m_mode(true), subj ()
 {
 	this->funcs["remove"] = &bot::remove;
 	this->funcs["status"] = &bot::status;
 	this->funcs["bth"] = &bot::bth;
 	this->funcs["prar"] = &bot::prar;
+	this->funcs["emg"] = &bot::emg;
 	this->funcs["finish"] = &bot::finish;
 	this->funcs["back"] = &bot::back;
+	this->funcs["monitoring"] = &bot::monitoring_mode;
 }
 
 bot::~bot() {
@@ -158,8 +160,8 @@ void		bot::selCmd(std::vector<std::string> cmd)
 	{
 		if (this->toLower(cmd[4]) == "help")
 			this->channels[cmd[2]]->addMsg(this->msgs);
-		else if (this->toLower(cmd[4]) == "list")
-			this->list(cmd[2]);
+		// else if (this->toLower(cmd[4]) == "list")
+		// 	this->list(cmd[2]);
 		else if (this->toLower(cmd[4]) == "num")
 			this->num(cmd[2]);
 		else if (cmd.size() >= 6)

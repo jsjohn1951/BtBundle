@@ -23,7 +23,7 @@ void	bot::add(std::string &subUser, std::string &gen, const std::string &chan)
 	if (this->subj.find(subUser) != this->subj.end())
 		return this->channels[chan]->addPrivMsg(subUser + " IS ALREADY A MEMBER!");
 	this->channels[chan]->addPrivMsg("ADDING USER : " + subUser);
-	this->subj[subUser] = new t_subj(this->bthBreaks, this->prarBreaks, (gen == "M" ? MALE : FEMALE));
+	this->subj[subUser] = new t_subj(this->bthBreaks, this->prarBreaks, (this->toLower(gen) == "f" ? FEMALE : MALE));
 	this->log << subUser + " added to bot!";
 }
 
@@ -64,6 +64,8 @@ void	bot::status(std::string &subUser, const std::string &chan)
 								"WENT PRAYER BREAK" :
 								sub->status == FINISHED ?
 								"COMPLETED EXAM" :
+								sub->status == EMG_BREAK ?
+								"EMERGENCY" :
 								"NO CLUE???")
 								+ " ]");
 	this->channels[chan]->addPrivMsg("Gender : [ "
@@ -87,7 +89,7 @@ void	bot::bth(std::string &subUser, const std::string &chan)
 	t_subj	*sub = this->subj[subUser];
 	if (sub->status == FINISHED)
 		return this->channels[chan]->addPrivMsg(subUser + " ALREADY FINISHED!");
-	if ((sub->gender == MALE ? track.mBth : track.fBth ) == 3)
+	if (this->m_mode && (sub->gender == MALE ? track.mBth : track.fBth ) == 3)
 		return this->channels[chan]->addPrivMsg("TOO MANY IN BATHROOM!");
 	if (!sub->bth)
 		return this->channels[chan]->addPrivMsg(subUser + " HAS NO MORE BATHROOM BREAKS LEFT!");
@@ -126,6 +128,22 @@ void	bot::prar(std::string &subUser, const std::string &chan)
 	this->log << subUser + " : prayer break";
 }
 
+void	bot::emg(std::string &subUser, const std::string &chan)
+{
+	if (this->channels.find(chan) == this->channels.end())
+		return ;
+	if (this->subj.find(subUser) == this->subj.end())
+		return this->channels[chan]->addPrivMsg("NO INSTANCE OF \"" + subUser + "\" EXISTS!");
+
+	t_subj	*sub = this->subj[subUser];
+	if (sub->status == FINISHED)
+		return this->channels[chan]->addPrivMsg(subUser + " ALREADY FINISHED!");
+	this->channels[chan]->addPrivMsg(subUser + " status set : [ EMERGENCY ]");
+	sub->bth--;
+	sub->status = EMG_BREAK;
+	this->log << subUser + " : EMERGENCY";
+}
+
 void	bot::finish(std::string &subUser, const std::string &chan)
 {
 	if (this->channels.find(chan) == this->channels.end())
@@ -144,15 +162,15 @@ void	bot::finish(std::string &subUser, const std::string &chan)
 	this->log << subUser + " : finished exam";
 }
 
-void	bot::list( const std::string &chan)
-{
-	if (this->channels.find(chan) == this->channels.end())
-		return ;
-	std::map<std::string, t_subj *>::iterator	it;
+// void	bot::list( const std::string &chan)
+// {
+// 	if (this->channels.find(chan) == this->channels.end())
+// 		return ;
+// 	std::map<std::string, t_subj *>::iterator	it;
 
-	for (it = this->subj.begin(); it != this->subj.end(); it++)
-		this->channels[chan]->addPrivMsg(" [ " + it->first + " ]");
-}
+// 	for (it = this->subj.begin(); it != this->subj.end(); it++)
+// 		this->channels[chan]->addPrivMsg(" [ " + it->first + " ]");
+// }
 
 void	bot::back(std::string &subUser, const std::string &chan)
 {
@@ -171,7 +189,8 @@ void	bot::back(std::string &subUser, const std::string &chan)
 		return this->channels[chan]->addPrivMsg(subUser + " hasn't left yet!");
 	this->channels[chan]->addPrivMsg(subUser + " status set : [ SEATED ]");
 	sub->status = SEATED;
-	(sub->gender == MALE ? track.mBth : track.fBth )--;
+	if (this->m_mode)
+		(sub->gender == MALE ? track.mBth : track.fBth )--;
 	this->log << subUser + " status set : [ SEATED ]";
 }
 
@@ -199,4 +218,25 @@ void	bot::num( const std::string &chan )
 	this->channels[chan]->addPrivMsg(" ");
 	this->channels[chan]->addPrivMsg("Prayer : ");
 	this->numMsg(chan, (tmp << this->track.mPrar), (tmp2 << this->track.fPrar));
+}
+
+void	bot::monitoring_mode( std::string &op, const std::string &chan )
+{
+	(void) chan;
+	std::string	option;
+
+	option = this->toLower(op);
+	std::map<std::string, ft::channel *>::iterator	it = this->channels.begin();
+	if (option == "on")
+	{
+		for (; it != this->channels.end(); it++)
+			it->second->addPrivMsg("Monitoring mode switched on");
+		this->m_mode = M_ON;
+	}
+	else if (option == "off")
+	{
+		for (; it != this->channels.end(); it++)
+			it->second->addPrivMsg("Monitoring mode switched off");
+		this->m_mode = M_OFF;
+	}
 }

@@ -13,7 +13,7 @@
 NAME = EXAMBOT
 
 SRCS = ./docker-compose.yml
-COMP = docker-compose
+COMP = docker compose
 DIRFLAG =  -f $(SRCS)
 
 LOGS = ./log
@@ -30,7 +30,7 @@ $(NAME) : mvBotConf
 down : docDown mvServer cpBot
 
 docDown :
-	$(COMP) $(DIRFLAG) down --rmi all
+	 $(COMP) $(DIRFLAG) down
 
 mvBotConf : $(BOTCONF)
 	cp $(BOTCONF) bot/bot/
@@ -41,7 +41,7 @@ mvServer : $(SERVERLOG)
 
 cpBot : $(BOTLOG)
 	mkdir -p $(LOGS)
-	mv ./$(BOTLOG) $(LOGS)
+	cp ./$(BOTLOG) $(LOGS)
 
 bot.conf : $(BOTCONF)
 	@tput setaf 2

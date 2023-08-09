@@ -1,17 +1,17 @@
 #include "../includes/input.hpp"
 
-input::input (): str(), fd(1)
+Input::Input (): str(), fd(1)
 {}
 
-input::~input ()
+Input::~Input ()
 {}
 
-const std::string	&input::getStr() const
+const std::string	&Input::getStr() const
 {
 	return (this->str);
 }
 
-std::string	input::get_next_line()
+std::string	Input::get_next_line()
 {
 	std::string			line;
 	char				buff[2];
@@ -31,7 +31,7 @@ std::string	input::get_next_line()
 	return ( line );
 }
 
-void	input::receive()
+void	Input::receive()
 {
 	this->str = this->get_next_line();
 }
