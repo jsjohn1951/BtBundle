@@ -1,0 +1,298 @@
+1 : initializing the listener
+2 : Server Status: Socket fd set
+3 : Server Status: Set sock Opt "SO_REUSEADDR"
+4 : Server Status: Set sock Opt "SO_REUSEPORT"
+5 : Server Status: Socket set to Non Blocking
+6 : Server Status: Binding Socket
+7 : Server Status: Listening on Socket
+8 :  
+9 : [ Client Attempting to Connect ]
+10 : Accepting new client, fd : 4
+11 :  
+12 :  << CAP LS  PASS bob  NICK bot  USER bot bot localhost :ircbot  CAP END  
+13 :  >> CAP * LS 
+14 : 
+15 :  >> :!~@ NICK :bot  
+16 :  >> :localhost 001 bot :Welcome to the irc server! 
+17 : 
+18 :  >> :localhost 002 bot :Your host is ircserv, running version 1.0.0  
+19 :  >> :localhost 003 bot :Server started Thu Aug 10 12:38:04 2023   
+20 :  >> :localhost 004 bot :ircserv ircserv-1.0.0  
+21 :  >> :localhost 005 bot :are available on this server  
+22 :  >> :localhost 375 bot :- ircserv Message of the Day  
+23 :  >> :localhost 372 bot :-                                                    
+24 :  >> :localhost 372 bot :-                                                    
+25 :  >> :localhost 372 bot :-                                                    
+26 :  >> :localhost 372 bot :-        ______________________________________      
+27 :  >> :localhost 372 bot :-       |[32m    _                                 [0m|     
+28 :  >> :localhost 372 bot :-       |[32m   (_)                                [0m|     
+29 :  >> :localhost 372 bot :-       |[32m    _ _ __ ___ ___  ___ _ ____   __   [0m|     
+30 :  >> :localhost 372 bot :-       |[32m   | | '__/ __/ __|/ _ \ '__\ \ / /   [0m|   
+31 :  >> :localhost 372 bot :-       |[32m   | | | | (__\__ \  __/ |   \ V /    [0m|   
+32 :  >> :localhost 372 bot :-       |[32m   |_|_|  \___|___/\___|_|    \_/     [0m|   
+33 :  >> :localhost 372 bot :-       |            version : [31m1.0.0           [0m|     
+34 :  >> :localhost 372 bot :-        --------------------------------------      
+35 :  >> :localhost 372 bot :-                      Creators :                     
+36 :  >> :localhost 372 bot :-                                                    
+37 :  >> :localhost 372 bot :-      Muazzam Akhtar, Imran Mustafa, Willem Smith   
+38 :  >> :localhost 372 bot :-                                                    
+39 :  >> :localhost 372 bot :-      -------------------------------------------   
+40 :  >> :localhost 372 bot :-       "[35mWelcome to our IRC server! Ircserv was[0m     
+41 :  >> :localhost 372 bot :-     [35mcreated as required by the 42 ft_irc project.[0m  
+42 :  >> :localhost 372 bot :-      [35mWe are delighted to introduce to you our[0m      
+43 :  >> :localhost 372 bot :-                        [35mversion.[0m"                  
+44 :  >> :localhost 372 bot :-      -------------------------------------------   
+45 :  >> :localhost 372 bot :-                                                    
+46 :  >> :localhost 372 bot :-  If you can dream it, you can do it. - Walt Disney  
+47 :  >> :localhost 372 bot :-                                                    
+48 :  >> :localhost 372 bot :-                                                    
+49 :  >> :localhost 372 bot :-                                                    
+50 :  >> :localhost 372 bot :-                                                    
+51 :  >> :localhost 376 bot :End of /MOTD command.  
+52 : [ Client Attempting to Connect ]
+53 : Accepting new client, fd : 5
+54 :  
+55 :  << CAP LS  PASS bob  NICK client  USER client client localhost :ircClient  CAP END  JOIN #client  INVITE bot #client  
+56 :  >> :client INVITE bot :#client 
+57 : 
+58 :  >> CAP * LS 
+59 : 
+60 :  >> :!~@ NICK :client  
+61 :  >> :client!~client@localhost JOIN :#client  
+62 :  >> : 353 @client = #client :@client   
+63 :  >> MODE #client +o client  
+64 :  >> : 366 client #client :End of /NAMES list.  
+65 :  >> :localhost 341 client bot #client  
+66 :  << JOIN #client  
+67 :  >> :localhost 001 client :Welcome to the irc server! 
+68 : 
+69 :  >> :localhost 002 client :Your host is ircserv, running version 1.0.0  
+70 :  >> :localhost 003 client :Server started Thu Aug 10 12:38:12 2023   
+71 :  >> :localhost 004 client :ircserv ircserv-1.0.0  
+72 :  >> :localhost 005 client :are available on this server  
+73 :  >> :localhost 375 client :- ircserv Message of the Day  
+74 :  >> :localhost 372 client :-                                                    
+75 :  >> :localhost 372 client :-                                                    
+76 :  >> :localhost 372 client :-                                                    
+77 :  >> :localhost 372 client :-        ______________________________________      
+78 :  >> :localhost 372 client :-       |[32m    _                                 [0m|     
+79 :  >> :localhost 372 client :-       |[32m   (_)                                [0m|     
+80 :  >> :localhost 372 client :-       |[32m    _ _ __ ___ ___  ___ _ ____   __   [0m|     
+81 :  >> :localhost 372 client :-       |[32m   | | '__/ __/ __|/ _ \ '__\ \ / /   [0m|   
+82 :  >> :localhost 372 client :-       |[32m   | | | | (__\__ \  __/ |   \ V /    [0m|   
+83 :  >> :localhost 372 client :-       |[32m   |_|_|  \___|___/\___|_|    \_/     [0m|   
+84 :  >> :localhost 372 client :-       |            version : [31m1.0.0           [0m|     
+85 :  >> :localhost 372 client :-        --------------------------------------      
+86 :  >> :localhost 372 client :-                      Creators :                     
+87 :  >> :localhost 372 client :-                                                    
+88 :  >> :localhost 372 client :-      Muazzam Akhtar, Imran Mustafa, Willem Smith   
+89 :  >> :localhost 372 client :-                                                    
+90 :  >> :localhost 372 client :-      -------------------------------------------   
+91 :  >> :localhost 372 client :-       "[35mWelcome to our IRC server! Ircserv was[0m     
+92 :  >> :localhost 372 client :-     [35mcreated as required by the 42 ft_irc project.[0m  
+93 :  >> :localhost 372 client :-      [35mWe are delighted to introduce to you our[0m      
+94 :  >> :localhost 372 client :-                        [35mversion.[0m"                  
+95 :  >> :localhost 372 client :-      -------------------------------------------   
+96 :  >> :localhost 372 client :-                                                    
+97 :  >> :localhost 372 client :-  Never give up. Today is hard, tomorrow will be worse, but the day after tomorrow will be sunshine. - Jack Ma  
+98 :  >> :localhost 372 client :-                                                    
+99 :  >> :localhost 372 client :-                                                    
+100 :  >> :localhost 372 client :-                                                    
+101 :  >> :localhost 372 client :-                                                    
+102 :  >> :localhost 376 client :End of /MOTD command.  
+103 :  >> :bot!~bot@localhost JOIN :#client  
+104 :  >> :bot!~bot@localhost JOIN :#client 
+105 : 
+106 :  >> : 353 @bot = #client :@client bot   
+107 :  >> : 366 bot #client :End of /NAMES list.  
+108 :  << PRIVMSG #client :bot list  
+109 :  >> :client PRIVMSG #client :bot list 
+110 : 
+111 :  << PRIVMSG #client :User1 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+112 :  >> :bot PRIVMSG #client :User1 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]  
+113 : 
+114 :  << PRIVMSG #client :User2 gender: [ F ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   PRIVMSG #client :User3 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+115 :  >> :bot PRIVMSG #client :User2 gender: [ F ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]  
+116 : 
+117 :  >> :bot PRIVMSG #client :User3 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+118 :  << PRIVMSG #client :User4 gender: [ F ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+119 :  >> :bot PRIVMSG #client :User4 gender: [ F ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]  
+120 : 
+121 :  << PRIVMSG #client :User5 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+122 :  >> :bot PRIVMSG #client :User5 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]  
+123 : 
+124 :  << PRIVMSG #client :bot bth User3  
+125 :  >> :client PRIVMSG #client :bot bth User3 
+126 : 
+127 :  << PRIVMSG #client :User3 status set to bth  
+128 :  >> :bot PRIVMSG #client :User3 status set to bth 
+129 : 
+130 :  << PRIVMSG #client :bot bth User3  
+131 :  >> :client PRIVMSG #client :bot bth User3 
+132 : 
+133 :  << PRIVMSG #client :Wait for person to return  
+134 :  >> :bot PRIVMSG #client :Wait for person to return 
+135 : 
+136 :  << PRIVMSG #client :bot back User3  
+137 :  >> :client PRIVMSG #client :bot back User3 
+138 : 
+139 :  << PRIVMSG #client :User3 status set to SEATED  
+140 :  >> :bot PRIVMSG #client :User3 status set to SEATED 
+141 : 
+142 :  << PRIVMSG #client :bot back User2  
+143 :  >> :client PRIVMSG #client :bot back User2 
+144 : 
+145 :  << PRIVMSG #client :Person already seated  
+146 :  >> :bot PRIVMSG #client :Person already seated 
+147 : 
+148 :  << QUIT :client is leaving!  
+149 :  >> :client!~client@localhost QUIT :Quit: has quit the server! 
+150 : 
+151 :  >> :client!~client@localhost QUIT :Quit: has quit the server! 
+152 : 
+153 :  >> :client QUIT ::client is leaving!  
+154 : [ Client Attempting to Connect ]
+155 : Accepting new client, fd : 5
+156 :  
+157 :  << CAP LS  PASS bob  NICK client2  USER client2 client2 localhost :ircClient  CAP END  JOIN #client2  INVITE bot #client2  
+158 :  >> :client2 INVITE bot :#client2 
+159 : 
+160 :  >> CAP * LS 
+161 : 
+162 :  >> :!~@ NICK :client2  
+163 :  >> :client2!~client2@localhost JOIN :#client2  
+164 :  >> : 353 @client2 = #client2 :@client2   
+165 :  >> MODE #client2 +o client2  
+166 :  >> : 366 client2 #client2 :End of /NAMES list.  
+167 :  >> :localhost 341 client2 bot #client2  
+168 :  << JOIN #client2  
+169 :  >> :localhost 001 client2 :Welcome to the irc server! 
+170 : 
+171 :  >> :localhost 002 client2 :Your host is ircserv, running version 1.0.0  
+172 :  >> :localhost 003 client2 :Server started Thu Aug 10 12:39:33 2023   
+173 :  >> :localhost 004 client2 :ircserv ircserv-1.0.0  
+174 :  >> :localhost 005 client2 :are available on this server  
+175 :  >> :localhost 375 client2 :- ircserv Message of the Day  
+176 :  >> :localhost 372 client2 :-                                                    
+177 :  >> :localhost 372 client2 :-                                                    
+178 :  >> :localhost 372 client2 :-                                                    
+179 :  >> :localhost 372 client2 :-        ______________________________________      
+180 :  >> :localhost 372 client2 :-       |[32m    _                                 [0m|     
+181 :  >> :localhost 372 client2 :-       |[32m   (_)                                [0m|     
+182 :  >> :localhost 372 client2 :-       |[32m    _ _ __ ___ ___  ___ _ ____   __   [0m|     
+183 :  >> :localhost 372 client2 :-       |[32m   | | '__/ __/ __|/ _ \ '__\ \ / /   [0m|   
+184 :  >> :localhost 372 client2 :-       |[32m   | | | | (__\__ \  __/ |   \ V /    [0m|   
+185 :  >> :localhost 372 client2 :-       |[32m   |_|_|  \___|___/\___|_|    \_/     [0m|   
+186 :  >> :localhost 372 client2 :-       |            version : [31m1.0.0           [0m|     
+187 :  >> :localhost 372 client2 :-        --------------------------------------      
+188 :  >> :localhost 372 client2 :-                      Creators :                     
+189 :  >> :localhost 372 client2 :-                                                    
+190 :  >> :localhost 372 client2 :-      Muazzam Akhtar, Imran Mustafa, Willem Smith   
+191 :  >> :localhost 372 client2 :-                                                    
+192 :  >> :localhost 372 client2 :-      -------------------------------------------   
+193 :  >> :localhost 372 client2 :-       "[35mWelcome to our IRC server! Ircserv was[0m     
+194 :  >> :localhost 372 client2 :-     [35mcreated as required by the 42 ft_irc project.[0m  
+195 :  >> :localhost 372 client2 :-      [35mWe are delighted to introduce to you our[0m      
+196 :  >> :localhost 372 client2 :-                        [35mversion.[0m"                  
+197 :  >> :localhost 372 client2 :-      -------------------------------------------   
+198 :  >> :localhost 372 client2 :-                                                    
+199 :  >> :localhost 372 client2 :-  The secret of getting ahead is getting started. - Mark Twain  
+200 :  >> :localhost 372 client2 :-                                                    
+201 :  >> :localhost 372 client2 :-                                                    
+202 :  >> :localhost 372 client2 :-                                                    
+203 :  >> :localhost 372 client2 :-                                                    
+204 :  >> :localhost 376 client2 :End of /MOTD command.  
+205 :  >> :bot!~bot@localhost JOIN :#client2  
+206 :  >> :bot!~bot@localhost JOIN :#client2 
+207 : 
+208 :  >> : 353 @bot = #client2 :@client2 bot   
+209 :  >> : 366 bot #client2 :End of /NAMES list.  
+210 :  << PRIVMSG #client2 :bot num  
+211 :  >> :client2 PRIVMSG #client2 :bot num 
+212 : 
+213 :  << PRIVMSG #client2 :  
+214 :  >> :bot PRIVMSG #client2 : 
+215 : 
+216 :  << PRIVMSG #client2 :in Bathroom :  PRIVMSG #client2 :  
+217 :  >> :bot PRIVMSG #client2 :in Bathroom : 
+218 : 
+219 :  >> :bot PRIVMSG #client2 :  
+220 :  << PRIVMSG #client2 :in prayer :  
+221 :  >> :bot PRIVMSG #client2 :in prayer : 
+222 : 
+223 :  << PRIVMSG #client2 :bot bth User4  
+224 :  >> :client2 PRIVMSG #client2 :bot bth User4 
+225 : 
+226 :  << PRIVMSG #client2 :User4 status set to bth  
+227 :  >> :bot PRIVMSG #client2 :User4 status set to bth 
+228 : 
+229 :  << PRIVMSG #client2 :bot bth User2  
+230 :  >> :client2 PRIVMSG #client2 :bot bth User2 
+231 : 
+232 :  << PRIVMSG #client2 :User2 status set to bth  
+233 :  >> :bot PRIVMSG #client2 :User2 status set to bth 
+234 : 
+235 :  << PRIVMSG #client2 :bot bth User5  
+236 :  >> :client2 PRIVMSG #client2 :bot bth User5 
+237 : 
+238 :  << PRIVMSG #client2 :User5 status set to bth  
+239 :  >> :bot PRIVMSG #client2 :User5 status set to bth 
+240 : 
+241 :  << PRIVMSG #client2 :bot bth User6  
+242 :  >> :client2 PRIVMSG #client2 :bot bth User6 
+243 : 
+244 :  << PRIVMSG #client2 :User not found!  
+245 :  >> :bot PRIVMSG #client2 :User not found! 
+246 : 
+247 :  << PRIVMSG #client2 :bot num  
+248 :  >> :client2 PRIVMSG #client2 :bot num 
+249 : 
+250 :  << PRIVMSG #client2 :  
+251 :  >> :bot PRIVMSG #client2 : 
+252 : 
+253 :  << PRIVMSG #client2 :in Bathroom :  
+254 :  >> :bot PRIVMSG #client2 :in Bathroom : 
+255 : 
+256 :  << PRIVMSG #client2 :User2 gender: [ F ]  STATUS: [ BATHROOM ]   
+257 :  >> :bot PRIVMSG #client2 :User2 gender: [ F ]  STATUS: [ BATHROOM ]  
+258 : 
+259 :  << PRIVMSG #client2 :User4 gender: [ F ]  STATUS: [ BATHROOM ]   
+260 :  >> :bot PRIVMSG #client2 :User4 gender: [ F ]  STATUS: [ BATHROOM ]  
+261 : 
+262 :  << PRIVMSG #client2 :User5 gender: [ M ]  STATUS: [ BATHROOM ]   
+263 :  >> :bot PRIVMSG #client2 :User5 gender: [ M ]  STATUS: [ BATHROOM ]  
+264 : 
+265 :  << PRIVMSG #client2 :  
+266 :  >> :bot PRIVMSG #client2 : 
+267 : 
+268 :  << PRIVMSG #client2 :in prayer :  
+269 :  >> :bot PRIVMSG #client2 :in prayer : 
+270 : 
+271 :  << PRIVMSG #client2 :bot add User2 M  
+272 :  >> :client2 PRIVMSG #client2 :bot add User2 M 
+273 : 
+274 :  << PRIVMSG #client2 :Adding 'User2' to bot  
+275 :  >> :bot PRIVMSG #client2 :Adding 'User2' to bot 
+276 : 
+277 :  << PRIVMSG #client2 :bot list  
+278 :  >> :client2 PRIVMSG #client2 :bot list 
+279 : 
+280 :  << PRIVMSG #client2 :User1 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+281 :  >> :bot PRIVMSG #client2 :User1 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]  
+282 : 
+283 :  << PRIVMSG #client2 :User2 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]   
+284 :  >> :bot PRIVMSG #client2 :User2 gender: [ M ]  STATUS: [ SEATED ] bth:[ 3 ] prar:[ 3 ]  
+285 : 
+286 :  << PRIVMSG #client2 :User3 gender: [ M ]  STATUS: [ SEATED ] bth:[ 2 ] prar:[ 3 ]   
+287 :  >> :bot PRIVMSG #client2 :User3 gender: [ M ]  STATUS: [ SEATED ] bth:[ 2 ] prar:[ 3 ]  
+288 : 
+289 :  << PRIVMSG #client2 :User4 gender: [ F ]  STATUS: [ BATHROOM ] bth:[ 2 ] prar:[ 3 ]   
+290 :  >> :bot PRIVMSG #client2 :User4 gender: [ F ]  STATUS: [ BATHROOM ] bth:[ 2 ] prar:[ 3 ]  
+291 : 
+292 :  << PRIVMSG #client2 :User5 gender: [ M ]  STATUS: [ BATHROOM ] bth:[ 2 ] prar:[ 3 ]   
+293 :  >> :bot PRIVMSG #client2 :User5 gender: [ M ]  STATUS: [ BATHROOM ] bth:[ 2 ] prar:[ 3 ]  
+294 : 
+295 : Closing client fds
+296 : 
+297 : Shutting Down Server
+

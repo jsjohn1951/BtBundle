@@ -1,12 +1,11 @@
 #include "../../includes/log.hpp"
 
 log::log (const std::string &name) : fname(name), outfile() {
-	time_t		now = time( 0 );
-	tm			*gmtm = gmtime( &now );
-	std::string time( asctime( gmtm ) );
+	std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
+	std::time_t		current = std::chrono::system_clock::to_time_t(tm);
 
 	this->outfile.open(this->fname.c_str(), std::ofstream::out | std::ofstream::app);
-	this->outfile << "Log Start: " << time << std::endl;
+	this->outfile << "Log Start: " << std::ctime(&current) << std::endl;
 	this->outfile.close();
 }
 
@@ -40,9 +39,9 @@ void			log::parsLog(const std::string &msg)
 
 void	log::pushLog(const std::string &msg)
 {
-	time_t		now = time( 0 );
-	tm			*gmtm = gmtime( &now );
-	std::string time( asctime( gmtm ) );
+	std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
+	std::time_t		current = std::chrono::system_clock::to_time_t(tm);
+	std::string 	time(std::ctime(&current));
     std::string Content;
 
 	time.erase(time.find('\n'));

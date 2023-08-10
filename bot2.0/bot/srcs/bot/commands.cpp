@@ -24,6 +24,14 @@ std::map<std::string, t_subj>::iterator bot::findUser(const std::string &usr)
     return (it);
 }
 
+void	bot::preSet(int preset, int flag)
+{
+	if (preset != SEATED && flag != SEATED)
+		throw std::invalid_argument ("Wait for person to return");
+	else if (preset == flag)
+		throw std::invalid_argument ("Person already seated");
+}
+
 void    bot::add (const std::string &sub, const std::string &gen, const std::string &chan)
 {
     this->privMsg(chan, ":Adding '" + sub + "' to bot");
@@ -103,6 +111,7 @@ void    bot::status (const std::string &usr, const std::string &chan)
 void    bot::bth (const std::string &usr, const std::string &chan)
 {
     std::map<std::string, t_subj>::iterator it = this->findUser(usr);
+	this->preSet(it->second.status, BATHROOM);
     if (!it->second.breaks.bth)
         return (this->privMsg(chan, ":No more breaks available!"));
     it->second.breaks.bth--;
@@ -114,6 +123,7 @@ void    bot::bth (const std::string &usr, const std::string &chan)
 void    bot::prar (const std::string &usr, const std::string &chan)
 {
     std::map<std::string, t_subj>::iterator it = this->findUser(usr);
+	this->preSet(it->second.status, PRAYER);
     if (!it->second.breaks.pray)
         return (this->privMsg(chan, ":No more breaks available!"));
     it->second.breaks.pray--;
@@ -125,6 +135,7 @@ void    bot::prar (const std::string &usr, const std::string &chan)
 void    bot::emg (const std::string &usr, const std::string &chan)
 {
     std::map<std::string, t_subj>::iterator it = this->findUser(usr);
+	this->preSet(it->second.status, EMERGENCY);
     it->second.status = EMERGENCY;
     this->privMsg(chan, ":" + usr + " status set to EMERGENCY");
     this->logSub(it->second);
@@ -133,6 +144,7 @@ void    bot::emg (const std::string &usr, const std::string &chan)
 void    bot::back (const std::string &usr, const std::string &chan)
 {
     std::map<std::string, t_subj>::iterator it = this->findUser(usr);
+	this->preSet(it->second.status, SEATED);
     it->second.status = SEATED;
     this->privMsg(chan, ":" + usr + " status set to SEATED");
     this->logSub(it->second);

@@ -21,11 +21,11 @@
 #include "config.hpp"
 
 #ifndef MSG
-    # define MSG "bot.msg"
+	# define MSG "bot.msg"
 #endif
 
 #ifndef CONF
-    #define CONF "bot.conf"
+	#define CONF "bot.conf"
 #endif
 
 # define LIMITS 0
@@ -39,58 +39,58 @@
 
 typedef struct s_ret
 {
-    bool    limits = false, breaks = false, names = false;
+	bool	limits = false, breaks = false, names = false;
 }   t_ret;
 
 typedef struct s_specs
 {
-    bool    limits = false, breaks = false, names = false;
-    bool    start = false;
+	bool	limits = false, breaks = false, names = false;
+	bool	start = false;
 }   t_specs;
 
 # define NPOLL(nfd) (struct pollfd){ .fd = nfd, .events = POLLIN | POLLOUT, .revents = 0 }
 
 class parser : public config
 {
-    protected :
-        struct pollfd                           pfds;
-        int                                     sock;
-        size_t                                  port;
+	protected :
+	struct pollfd	   pfds;
+	int	 sock;
+	size_t	  port;
 
-        std::vector<std::string>                msg;
-        // std::string                             msg;
-        std::vector<std::string>                config;
-        std::string                             pass;
+	std::vector<std::string>	msg;
+	// std::string	 msg;
+	std::vector<std::string>	config;
+	std::string	 pass;
 
-        std::vector<std::string>	            cmds;
-        std::vector<std::string>                cmd_sec;
-        std::string                             buffer;
+	std::vector<std::string>		cmds;
+	std::vector<std::string>	cmd_sec;
+	std::string	 buffer;
 
-    public :
-                                                parser ();
-                                                ~parser ();
+	public :
+	parser ();
+	~parser ();
 
-        int                                     getSock () const;
-        size_t                                  getPort () const;
+	int	 getSock () const;
+	size_t	  getPort () const;
 
-        void                                    args ( int argc, char **argv );
-        void                                    retrieveMsg ();
-        void                                    retrieveConfig ();
-        void                                    eraseComments ();
+	void	args ( int argc, char **argv );
+	void	retrieveMsg ();
+	void	retrieveConfig ();
+	void	eraseComments ();
 
-        /** Parse config */
-        void                                    names(t_ret &ret, std::string &line);
-        void                                    Overlord( const std::string &line, t_param &param);
-        void                                    limitDis();
+	/** Parse config */
+	void	names(t_ret &ret, std::string &line);
+	void	Overlord( const std::string &line, t_param &param);
+	void	limitDis();
 
-        void                                    printMsg ();
-        void                                    printConf ();
-        void                                    printUsers ();
-        std::pair<std::string, std::string>    ft_split(std::string &str, const std::string &delims);
+	void	printMsg ();
+	void	printConf ();
+	void	printUsers ();
+	std::pair<std::string, std::string>	ft_split(std::string &str, const std::string &delims);
 
-        void                                    pRecv (const std::string &cmd);
-        void	                                Read();
-        std::vector<std::string>		        &getCmdSec(size_t i);
+	void	pRecv (const std::string &cmd);
+	void		Read();
+	std::vector<std::string>			&getCmdSec(size_t i);
 };
 
 #endif
