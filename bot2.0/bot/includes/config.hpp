@@ -7,6 +7,8 @@
 
 #include <map>
 #include <string>
+#include <chrono>
+#include <ctime>
 
 # define MALE 0
 # define FEMALE 1
@@ -29,9 +31,10 @@ typedef struct  s_param
 typedef struct  s_subj
 {
 	std::string name;
-	int	 gen;
-	int	 status;
-	t_param	 breaks;
+	int	 		gen;
+	int	 		status;
+	t_param	 	breaks;
+	std::time_t	elapsed;
 }   t_subj;
 
 class config

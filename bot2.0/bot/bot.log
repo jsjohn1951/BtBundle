@@ -7,3 +7,31 @@ User2 gender: [ F ]  STATUS: [ BATHROOM ] 	time < Thu Aug 10 16:39:48 2023 >
 User5 gender: [ M ]  STATUS: [ BATHROOM ] 	time < Thu Aug 10 16:39:55 2023 > 
 User2 was added to the bot	time < Thu Aug 10 16:40:25 2023 > 
 
+Log Start: Fri Aug 11 18:19:57 2023
+
+User1 gender: [ M ]  STATUS: [ BATHROOM ] 	time < Fri Aug 11 18:20:42 2023 > 
+User1 gender: [ M ]  STATUS: [ SEATED ] 	time < Fri Aug 11 18:21:00 2023 > 
+
+Log Start: Fri Aug 11 19:30:53 2023
+
+User1 gender: [ M ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:31:06 2023 > 
+User1 gender: [ M ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:31:13 2023 > 
+
+Log Start: Fri Aug 11 19:32:47 2023
+
+User1 gender: [ M ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:32:56 2023 > 
+User1 gender: [ M ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:33:01 2023 > 
+User1 gender: [ M ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:33:12 2023 > 
+User1 gender: [ M ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:33:20 2023 > 
+
+Log Start: Fri Aug 11 19:34:03 2023
+
+User1 gender: [ M ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:34:18 2023 > 
+User2 gender: [ F ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:34:24 2023 > 
+User1 gender: [ M ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:34:28 2023 > 
+User2 gender: [ F ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:34:33 2023 > 
+User1 gender: [ M ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:34:40 2023 > 
+User1 gender: [ M ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:35:03 2023 > 
+User4 gender: [ F ]  STATUS: [ BATHROOM ] 	timestamp < Fri Aug 11 19:35:10 2023 > 
+User4 gender: [ F ]  STATUS: [ SEATED ] 	timestamp < Fri Aug 11 19:43:06 2023 > 
+

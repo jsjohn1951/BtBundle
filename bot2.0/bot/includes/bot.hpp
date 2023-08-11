@@ -9,10 +9,10 @@ class bot : public parser
 {
 	private :
 		std::vector<std::string>														backlog;
-		log																				Log;
+		logger																				Log;
 		std::map<std::string, void (bot::*)(const std::string &)>						mBasic;
 		std::map<std::string, void (bot::*)(const std::string &, const std::string&)>	stdFuncs;
-		
+
 	public :
 																						bot();
 																						~bot();
@@ -25,6 +25,7 @@ class bot : public parser
 		void																			cmdsel(std::vector<std::string> &);
 		void																			addCmd(const std::string &);
 		void																			privMsg(const std::string &, const std::string &);
+		std::string																		usrElapTime(t_subj &);
 
 	// bot commands
 		void																			help(const std::string &);
@@ -33,7 +34,7 @@ class bot : public parser
 
 		void																			invite(const std::string &);
 		void																			add (const std::string &, const std::string &, const std::string &);
- 
+
 		void																			remove (const std::string &, const std::string &);
 		void																			status (const std::string &, const std::string &);
 		void																			bth (const std::string &, const std::string &);

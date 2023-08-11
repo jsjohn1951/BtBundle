@@ -1,5 +1,9 @@
 #include "../../includes/parser.hpp"
 
+s_ret::s_ret (): limits(false), breaks(false), names(false) {}
+
+s_specs::s_specs (): limits(false), breaks(false), names(false), start(false) {}
+
 parser::parser() {}
 parser::~parser() {
     close (this->sock);

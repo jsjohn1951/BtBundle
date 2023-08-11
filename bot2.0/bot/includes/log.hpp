@@ -4,12 +4,11 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-// #include <time.h>
 #include <chrono>
-#include <ctime>  
+#include <ctime>
 #include <list>
 
-class log
+class logger
 {
 	std::list<std::string>	  nextLog;
 	std::string	 fname;
@@ -17,13 +16,14 @@ class log
 	void			parsLog(const std::string &msg);
 
 	public :
-	log (const std::string &);
-	~log ();
+	logger (const std::string &);
+	~logger ();
 
+	std::string		time_convert(time_t	&time);
 	//! file modifier
 	void			pushLog(const std::string &msg);
-}; 
+};
 
-log &operator<<(log &, const std::string &);
+logger &operator<<(logger &, const std::string &);
 
 #endif

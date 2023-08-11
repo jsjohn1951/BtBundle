@@ -12,9 +12,35 @@
 
 //    ./bot 127.0.0.1 6667 bob
 
+// std::string	time_convert(time_t	&time)
+// {
+// 	std::string timeElapsed;
+// 	timeElapsed = ((time / (60 * 60)) < 10 ? "0" : "")
+// 		+ std::to_string ((time / (60 * 60)))
+// 		+ ":"
+// 		+ (((time / 60) % 60) < 10 ? "0" : "")
+// 		+ std::to_string (((time / 60) % 60))
+// 		+ ":"
+// 		+ ((time % 60) < 10 ? "0" : "")
+// 		+ std::to_string (time % 60);
+// 		return (timeElapsed);
+// }
+
 int main(int argc, char **argv)
 {
-    try 
+	// std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
+	// std::time_t		current = std::chrono::system_clock::to_time_t(tm);
+
+	// sleep (4);
+
+	// std::chrono::system_clock::time_point tm2 = std::chrono::system_clock::now();
+	// std::time_t		after = std::chrono::system_clock::to_time_t(tm2);
+
+	// after -= current;
+	// std::cout << time_convert(after) << std::endl;
+	// exit (0);
+
+    try
     {
         bot Bot;
         Bot.args(argc, argv);

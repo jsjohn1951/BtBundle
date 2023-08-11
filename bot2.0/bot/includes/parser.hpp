@@ -39,13 +39,14 @@
 
 typedef struct s_ret
 {
-	bool	limits = false, breaks = false, names = false;
+			s_ret ();
+	bool	limits, breaks, names;
 }   t_ret;
 
 typedef struct s_specs
 {
-	bool	limits = false, breaks = false, names = false;
-	bool	start = false;
+			s_specs ();
+	bool	limits, breaks, names, start;
 }   t_specs;
 
 # define NPOLL(nfd) (struct pollfd){ .fd = nfd, .events = POLLIN | POLLOUT, .revents = 0 }

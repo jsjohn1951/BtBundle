@@ -21,39 +21,39 @@ void    parser::names(t_ret &ret, std::string &line)
                                         {this->breaks.pr,
                                         this->breaks.bt,
                                         this->breaks.pray,
-                                        this->breaks.bth}};
+                                        this->breaks.bth}, 0};
 }
 
 void    Specs(t_specs &specs, t_ret &ret, int type)
 {
+	t_specs	spec;
+	spec.start = specs.start;
     switch (type)
     {
-        default :
-            specs = {false, false, false, specs.start};
-            break ;
         case LIMITS :
-            specs = {true, false, false, specs.start};
+			spec.limits = true;
             ret.limits = true;
             break ;
         case BREAKS :
-            specs = {false, true, false, specs.start};
+			spec.breaks = true;
             ret.breaks = true;
             break ;
         case NAMES :
-            specs = {false, false, true, specs.start};
+			spec.names = true;
             ret.names = true;
             break ;
     }
+	specs = spec;
 }
 
 void parser::Overlord( const std::string &line, t_param &param)
 {
-    size_t  pos_w = 0, pos_eq = 0; 
+    size_t  pos_w = 0, pos_eq = 0;
     if ((pos_w = line.find("PRAY")) != line.npos)
     {
         if ((pos_eq = line.find("=")) != line.npos && pos_w < pos_eq)
         {
-            param = {true,
+            param = (t_param) {true,
                         param.bt,
                         std::atoi(line.c_str() + pos_eq + 1),
                         param.bth};
@@ -64,7 +64,7 @@ void parser::Overlord( const std::string &line, t_param &param)
     if ((pos_w = line.find("BTH")) != line.npos)
     {
         if ((pos_eq = line.find("=")) != line.npos && pos_w < pos_eq)
-            param = {param.pr,
+            param = (t_param) {param.pr,
                         true,
                         param.pray,
                         std::atoi(line.c_str() + pos_eq + 1)};
@@ -96,7 +96,7 @@ void parser::limitDis()
         specs.breaks ?
             Overlord( this->config[i], this->breaks) :
             (void) this->config[i]);
-        
+
         if (specs.names && ret.breaks)
             names (ret, this->config[i]);
     }

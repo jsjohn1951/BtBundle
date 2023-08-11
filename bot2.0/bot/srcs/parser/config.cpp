@@ -1,6 +1,8 @@
 #include "../../includes/config.hpp"
 
-config::config () : MODE (-1), limits({false, false, 0, 0}), breaks({false, false, 0, 0}), sub() {}
+config::config () : MODE (-1), limits((t_param) {false, false, 0, 0}),
+	breaks((t_param) {false, false, 0, 0}), sub() {}
+
 config::~config () {}
 
 const int &config::getMode () const

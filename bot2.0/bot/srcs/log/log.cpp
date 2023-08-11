@@ -1,6 +1,6 @@
 #include "../../includes/log.hpp"
 
-log::log (const std::string &name) : fname(name), outfile() {
+logger::logger (const std::string &name) : fname(name), outfile() {
 	std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
 	std::time_t		current = std::chrono::system_clock::to_time_t(tm);
 
@@ -9,7 +9,7 @@ log::log (const std::string &name) : fname(name), outfile() {
 	this->outfile.close();
 }
 
-log::~log () {
+logger::~logger () {
 	this->outfile.open(this->fname.c_str(), std::ofstream::out | std::ofstream::app);
 	if (this->outfile.good())
 	{
@@ -18,7 +18,7 @@ log::~log () {
 	}
 }
 
-void			log::parsLog(const std::string &msg)
+void			logger::parsLog(const std::string &msg)
 {
 	std::string	str = msg;
 	size_t	pos = -1;
@@ -37,7 +37,7 @@ void			log::parsLog(const std::string &msg)
 	}
 }
 
-void	log::pushLog(const std::string &msg)
+void	logger::pushLog(const std::string &msg)
 {
 	std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
 	std::time_t		current = std::chrono::system_clock::to_time_t(tm);
@@ -51,7 +51,7 @@ void	log::pushLog(const std::string &msg)
 	while (this->nextLog.size())
 	{
 		Content += this->nextLog.front();
-		Content += "\ttime < " + time + " > ";
+		Content += "\ttimestamp < " + time + " > ";
 		this->nextLog.pop_front();
 	}
 	if (this->outfile.good())
@@ -62,7 +62,21 @@ void	log::pushLog(const std::string &msg)
 	}
 }
 
-log	&operator<<(log &l, std::string const &msg)
+std::string	logger::time_convert(time_t	&time)
+{
+	std::string timeElapsed;
+	timeElapsed = ((time / (60 * 60)) < 10 ? "0" : "")
+		+ std::to_string ((time / (60 * 60)))
+		+ ":"
+		+ (((time / 60) % 60) < 10 ? "0" : "")
+		+ std::to_string (((time / 60) % 60))
+		+ ":"
+		+ ((time % 60) < 10 ? "0" : "")
+		+ std::to_string (time % 60);
+		return (timeElapsed);
+}
+
+logger &operator<<(logger &l, std::string const &msg)
 {
 	l.pushLog(msg);
 	return (l);
