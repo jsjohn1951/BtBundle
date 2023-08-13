@@ -5,6 +5,8 @@
 # define BREAKS 1
 # define NAMES 2
 
+# include "log.hpp"
+
 #include <map>
 #include <string>
 #include <chrono>

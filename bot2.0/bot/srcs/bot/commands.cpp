@@ -2,7 +2,6 @@
 
 void    bot::addCmd(const std::string &cmd)
 {
-    // std::cout << "cmd: " << cmd << std::endl;
     this->backlog.push_back(cmd + "\r\n");
 }
 
@@ -41,6 +40,15 @@ std::string	bot::usrElapTime(t_subj &usr)
 	return (this->Log.time_convert(sav));
 }
 
+std::string	bot::usrCurElapTime(t_subj &sub)
+{
+	std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
+	std::time_t	nTime = std::chrono::system_clock::to_time_t(tm);
+	std::time_t	sav = nTime - sub.elapsed;
+
+	return (this->Log.time_convert(sav));
+}
+
 void    bot::add (const std::string &sub, const std::string &gen, const std::string &chan)
 {
     this->privMsg(chan, ":Adding '" + sub + "' to bot");
@@ -66,39 +74,53 @@ void    bot::remove(const std::string &usr, const std::string &chan)
 
 void    bot::list(const std::string &chan)
 {
-    std::map<std::string, t_subj>::iterator it;
-    for (it = this->sub.begin(); it != this->sub.end(); it++)
-    {
-        std::string tmp;
-        tmp << it->second;
-        tmp += "bth:" + std::string("[ ") + std::to_string(it->second.breaks.bth) + " ] ";
-        tmp += "prar:" + std::string("[ ") + std::to_string(it->second.breaks.pray) + " ] ";
-        this->privMsg(chan, ":" + tmp);
-    }
+	std::map<std::string, t_subj>::iterator it;
+	for (it = this->sub.begin(); it != this->sub.end(); it++)
+		this->status(it->second.name, chan);
 }
 
 void    bot::num (const std::string &chan)
 {
+	int	bth = 0, prar = 0;
     std::map<std::string, t_subj>::iterator it;
     this->privMsg(chan, ":");
-    this->privMsg(chan, ":in Bathroom :");
+    this->privMsg(chan, ":\x1B[32min Bathroom :\x1B[0m");
     for (it = this->sub.begin(); it != this->sub.end(); it++)
     {
         if (it->second.status != BATHROOM)
             continue;
+		bth++;
         std::string tmp;
-        this->privMsg(chan, ":" + (tmp << it->second));
+        this->privMsg(chan, ":\t" + it->second.name
+								+ " gen: [ "
+								+ (it->second.gen == FEMALE ? "\x1B[35mF" : "\x1B[34mM")
+								+ "\x1B[0m ] "
+								+ "time elapsed: [ \x1B[31m"
+								+ this->usrCurElapTime(it->second)
+								+ "\x1B[0m ] ");
     }
 
     this->privMsg(chan, ":");
-    this->privMsg(chan, ":in prayer :");
+    this->privMsg(chan, ":\x1B[32min Prayer :\x1B[0m");
     for (it = this->sub.begin(); it != this->sub.end(); it++)
     {
         if (it->second.status != PRAYER)
             continue;
+		prar++;
         std::string tmp;
-        this->privMsg(chan, ":" + (tmp << it->second));
+        this->privMsg(chan, ":\t" + it->second.name
+								+ " gen: [ "
+								+ (it->second.gen == FEMALE ? "\x1B[35mF" : "\x1B[34mM")
+								+ "\x1B[0m ] "
+								+ "time elapsed: [ \x1B[31m"
+								+ this->usrCurElapTime(it->second)
+								+ "\x1B[0m ] ");
     }
+	this->privMsg(chan, ":Num in bth: [ \x1B[32m"
+			+ std::to_string(bth) + "\x1B[0m ] "
+			+ "Num in prar: [ \x1B[35m"
+			+ std::to_string(prar) + "\x1B[0m ] ");
+	this->privMsg(chan, ":");
 }
 
 void    bot::help (const std::string &chan)
@@ -111,10 +133,20 @@ void    bot::status (const std::string &usr, const std::string &chan)
 {
     std::map<std::string, t_subj>::iterator it = this->findUser(usr);
     std::string tmp;
-    tmp << it->second;
-    tmp += "bth:" + std::string("[ ") + std::to_string(it->second.breaks.bth) + " ] ";
-    tmp += "prar:" + std::string("[ ") + std::to_string(it->second.breaks.pray) + " ] ";
-    this->privMsg(chan, ":" + tmp);
+	tmp += it->second.name
+		+ " gen: [ "
+		+ (it->second.gen == FEMALE ? "\x1B[35mF" : "\x1B[34mM")
+		+ "\x1B[0m ] " + " status: " + "[ "
+		+ (it->second.status == SEATED ? "\x1B[32mSEATED" :
+			it->second.status == BATHROOM ? "\x1B[36mBTHROOM" :
+			it->second.status == PRAYER ? "\x1B[35mPRAYER" :
+			it->second.status == EMERGENCY ? "\x1B[31mEMERGENCY" :
+			"\x1B[31mWAREABOUTS UNKNOWN") + "\x1B[0m ] "
+		+ "bth:" + "[ \x1B[36m"
+		+ std::to_string(it->second.breaks.bth) + "\x1B[0m ] "
+		+ "prar:" + "[ \x1B[33m"
+		+ std::to_string(it->second.breaks.pray) + "\x1B[0m ] ";
+    this->privMsg(chan, ":\t" + tmp);
 }
 
 void    bot::bth (const std::string &usr, const std::string &chan)
@@ -125,9 +157,9 @@ void    bot::bth (const std::string &usr, const std::string &chan)
         return (this->privMsg(chan, ":No more breaks available!"));
     it->second.breaks.bth--;
     it->second.status = BATHROOM;
+    this->logSub(it->second);
 	this->usrElapTime(it->second);
     this->privMsg(chan, ":" + usr + " status set to bth");
-    this->logSub(it->second);
 }
 
 void    bot::prar (const std::string &usr, const std::string &chan)
@@ -138,9 +170,9 @@ void    bot::prar (const std::string &usr, const std::string &chan)
         return (this->privMsg(chan, ":No more breaks available!"));
     it->second.breaks.pray--;
     it->second.status = PRAYER;
+    this->logSub(it->second);
 	this->usrElapTime(it->second);
     this->privMsg(chan, ":" + usr + " status set to pray");
-    this->logSub(it->second);
 }
 
 void    bot::emg (const std::string &usr, const std::string &chan)
@@ -159,6 +191,7 @@ void    bot::back (const std::string &usr, const std::string &chan)
     it->second.status = SEATED;
 
     this->privMsg(chan, ":" + usr + " status set to SEATED");
-	this->privMsg(chan, ":" + usr + " time elapsed: " + this->usrElapTime(it->second));
     this->logSub(it->second);
+	this->privMsg(chan, ":" + usr + " time elapsed: [ "
+					+ this->usrElapTime(it->second) + " ] ");
 }

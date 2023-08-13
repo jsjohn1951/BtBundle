@@ -33,19 +33,18 @@ std::string    &operator<<(std::string &o, const std::string &str)
 
 std::string    &operator<<(std::string &o, t_subj &sub)
 {
-    o << sub.name
-        << std::string(" gender: ")
-        << std::string ("[ ")
-        << (sub.gen == FEMALE ? std::string("F") : std::string("M"))
-        << std::string(" ] ")
-        << std::string(" STATUS: ")
-        << std::string ("[ ")
-        << std::string (sub.status == SEATED ? "SEATED" :
-            sub.status == BATHROOM ? "BATHROOM" :
-            sub.status == PRAYER ? "PRAYER" :
-            sub.status == EMERGENCY ? "EMERGENCY" :
-            sub.status == LUNCH ? "LUNCH" :
-            "WAREABOUTS UNKNOWN")
-        << std::string (" ] ");
-    return (o);
+	o << sub.name
+		<< std::string(" gender: ")
+		<< std::string ("[ ")
+		<< (sub.gen == FEMALE ? std::string("F") : std::string("M"))
+		<< std::string(" ] ")
+		<< std::string(" STATUS: ")
+		<< std::string ("[ ")
+		<< std::string (sub.status == SEATED ? "SEATED" :
+			sub.status == BATHROOM ? "BATHROOM" :
+			sub.status == PRAYER ? "PRAYER" :
+			sub.status == EMERGENCY ? "EMERGENCY" :
+			"WAREABOUTS UNKNOWN")
+		<< std::string (" ] ");
+	return (o);
 }

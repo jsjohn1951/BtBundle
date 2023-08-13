@@ -26,6 +26,7 @@ class bot : public parser
 		void																			addCmd(const std::string &);
 		void																			privMsg(const std::string &, const std::string &);
 		std::string																		usrElapTime(t_subj &);
+		std::string																		usrCurElapTime(t_subj &);
 
 	// bot commands
 		void																			help(const std::string &);

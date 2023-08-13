@@ -1,5 +1,7 @@
 #include "../../includes/log.hpp"
 
+logger::logger () : fname(""), outfile() {}
+
 logger::logger (const std::string &name) : fname(name), outfile() {
 	std::chrono::system_clock::time_point tm = std::chrono::system_clock::now();
 	std::time_t		current = std::chrono::system_clock::to_time_t(tm);

@@ -10,12 +10,13 @@
 
 class logger
 {
-	std::list<std::string>	  nextLog;
-	std::string	 fname;
-	std::ofstream		outfile;
-	void			parsLog(const std::string &msg);
+	std::list<std::string>		nextLog;
+	std::string					fname;
+	std::ofstream				outfile;
+	void						parsLog(const std::string &msg);
 
 	public :
+	logger ();
 	logger (const std::string &);
 	~logger ();
 

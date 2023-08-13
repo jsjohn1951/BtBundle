@@ -67,21 +67,34 @@ void    bot::cmdsel(std::vector<std::string> &vec)
         return ;
     if (vec[1] == "INVITE")
         this->invite(vec[3]);
-    if (this->mBasic.find(vec[4]) != this->mBasic.end())
-        return ((this->*mBasic[vec[4]]) (vec[2]));
 
-    if (vec.size() < 6 || vec[1] != "PRIVMSG" || vec[3] != ":bot")
+    if (vec[1] != "PRIVMSG" || vec[3] != ":bot")
         return ;
 
     if (vec[4] == "add" && vec.size() >= 7)
         return (this->add(vec[5], vec[6], vec[2]));
 
     try{
-        if (this->stdFuncs.find(vec[4]) != this->stdFuncs.end())
-            (this->*stdFuncs[vec[4]]) (vec[5], vec[2]);
+		if (vec.size() == 5)
+		{
+    		if (this->mBasic.find(vec[4]) != this->mBasic.end())
+        		return ((this->*mBasic[vec[4]]) (vec[2]));
+			else
+				throw (std::invalid_argument("Unknown Command '" + vec[4] + "'"));
+		}
+		else
+		{
+        	if (this->stdFuncs.find(vec[4]) != this->stdFuncs.end())
+            	(this->*stdFuncs[vec[4]]) (vec[5], vec[2]);
+			else
+				throw (std::invalid_argument("Unknown Command '" + vec[4] + "'"));
+		}
     }
     catch (const std::exception &e)
-    { this->privMsg (vec[2], ":" + std::string(e.what())); }
+    {
+		this->privMsg (vec[2], ":runtime:\x1B[31m " + std::string(e.what()) + "\x1B[0m");
+		this->privMsg (vec[2], ":runtime: Run 'bot help' for available commands");
+	}
 }
 
 void    sighandlr(int signum)
@@ -104,5 +117,9 @@ void    bot::logSub(t_subj &sub)
 {
     std::string tmp;
     tmp << sub;
-    this->Log << tmp;
+    this->Log << tmp
+		+ (sub.status != SEATED && sub.status != PRAYER ? "" : "\t")
+		+ "Time Elapsed: [ "
+		+ (sub.status != SEATED ? "00:00:00" : this->usrCurElapTime(sub))
+		+ " ] ";
 }
