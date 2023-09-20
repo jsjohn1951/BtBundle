@@ -2,7 +2,7 @@ NAME = bot
 
 CXX = g++
 
-CPPFLAGS = -Wall -Werror -Wextra
+CPPFLAGS = -Wall -Werror -Wextra -g3
 
 SRCS = main \
 	bot/bot \

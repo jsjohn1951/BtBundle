@@ -18,12 +18,12 @@ int main(int argc, char **argv)
         Bot.args(argc, argv);
         Bot.retrieveMsg();
         Bot.retrieveConfig();
-        Bot.eraseComments();
+        // Bot.eraseComments();
         Bot.limitDis();
         Bot.init();
+        // Bot.printConf();
         // Bot.printMsg();
         Bot.run();
-        // Bot.printConf();
     }
     catch (const std::invalid_argument &e)
     {

@@ -10,6 +10,7 @@ RUN apt-get install \
 	make \
 	g++ \
 	dialog \
+	valgrind \
 	-y --no-install-recommends
 
 ENV DEBIAN_FRONTEND=dialog

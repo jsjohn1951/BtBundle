@@ -1,6 +1,6 @@
 #! /bin/bash
 x=1
-cd /bot
+cd ./bot
 make re
 while [ $x = 1 ];
 	do

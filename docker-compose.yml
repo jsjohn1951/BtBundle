@@ -16,9 +16,9 @@ services:
     container_name: bot
     depends_on:
       - server
-    build: ./bot/
+    build: ./bot2.0/
     volumes :
-      - ./bot/bot:/bot
+      - ./bot2.0/bot:/bot
       - ./server/server:/server
       - ./scripts/bot.sh:/init.sh
     network_mode: "host"

@@ -14,6 +14,8 @@ void    parser::names(t_ret &ret, std::string &line)
 {
     (void) ret;
     std::pair<std::string, std::string> pr;
+	if (line.size() <= 1)
+		return ;
     pr = this->ft_split(line, "\n\t ");
     this->sub[pr.first] = (t_subj) {pr.first,
                                     (pr.second == "F" ? FEMALE : MALE),
@@ -99,11 +101,14 @@ void parser::limitDis()
 
         if (specs.names && ret.breaks)
             names (ret, this->config[i]);
+			// std::cout << this->config[i] << std::endl;
     }
+
+	// std::cout << "here!" << std::endl;
 
     if (!ret.limits)
         throw (std::invalid_argument("Config: No Limits specified"));
-    else if (!ret.breaks)
+    if (!ret.breaks)
         throw (std::invalid_argument("Config: No Breaks specified"));
 }
 

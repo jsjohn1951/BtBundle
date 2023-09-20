@@ -5,7 +5,7 @@ bool runner = true;
 bot::bot () : backlog(), Log("bot.log") {
     this->mBasic["help"] = &bot::help;
     this->mBasic["num"] = &bot::num;
-    this->mBasic["list"] = &bot::list;
+    // this->mBasic["list"] = &bot::list;
 
     this->stdFuncs["status"] = &bot::status;
     this->stdFuncs["remove"] = &bot::remove;

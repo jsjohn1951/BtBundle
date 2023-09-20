@@ -79,7 +79,9 @@ void    parser::eraseComments ()
     size_t  pos;
     size_t  end;
     bool    destroy = false;
-    for (size_t i = 0; i < this->config.size(); i++)
+	size_t i = 0;
+	std::cout << ": " << i << " " << this->config.size() << std::endl;
+    for (; i < this->config.size(); i++)
     {
         if ((pos = this->config[i].find("#")) != this->config[i].npos)
             destroy = true;
@@ -95,8 +97,11 @@ void    parser::eraseComments ()
             this->config.erase(this->config.begin() + i--);
     }
      for (size_t i = 0; i < this->config.size(); i++)
+	 {
         if (!this->config[i].size())
             this->config.erase(this->config.begin() + i--);
+	 }
+	std::cout << this->config.size() << std::endl;
 }
 
 void    parser::printMsg()

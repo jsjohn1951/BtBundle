@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/24 17:24:39 by wismith           #+#    #+#              #
-#    Updated: 2023/09/08 09:02:29 by wismith          ###   ########.fr        #
+#    Updated: 2023/09/20 14:40:51 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIRFLAG =  -f $(SRCS)
 
 LOGS = ./log
 SERVERLOG = server/server/server.log
-BOTLOG = bot/bot/bot.log
+BOTLOG = bot2.0/bot/bot.log
 
 BOTCONF = conf/bot.conf
 
@@ -33,7 +33,7 @@ docDown :
 	 $(COMP) $(DIRFLAG) down
 
 mvBotConf : $(BOTCONF)
-	cp $(BOTCONF) bot/bot/
+	cp $(BOTCONF) bot2.0/bot/
 
 mvServer : $(SERVERLOG)
 	mkdir -p $(LOGS)
@@ -97,7 +97,7 @@ prune :
 
 fclean : down prune
 	make fclean -C server/server
-	make fclean -C bot/bot
+	make fclean -C bot2.0/bot
 
 rmi :
 	docker rmi all
